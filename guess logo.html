@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Logo Guessing Game</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f3f3f3;
+        }
+        .container {
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        img {
+            width: 200px;
+            height: 200px;
+            margin: 20px;
+            border: 2px solid #333;
+            border-radius: 10px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            margin-top: 20px;
+            border: 2px solid #333;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            margin-top: 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Guess the Logo</h1>
+        <img id="logo" src="https://via.placeholder.com/200" alt="Logo">
+        <br>
+        <input type="text" id="guessInput" placeholder="Enter your guess">
+        <br>
+        <button onclick="checkGuess()">Check Guess</button>
+    </div>
+
+    <script>
+        const logos = [
+            "https://via.placeholder.com/200",
+            "https://via.placeholder.com/200/0000FF",
+            "https://via.placeholder.com/200/FF0000",
+            "https://via.placeholder.com/200/00FF00"
+        ];
+
+        let currentLogo = 0;
+
+        function setLogo() {
+            document.getElementById('logo').src = logos[currentLogo];
+        }
+
+        function checkGuess() {
+            const guess = document.getElementById('guessInput').value.toLowerCase();
+            const logoName = logos[currentLogo].split('/').pop();
+            if (guess === logoName.toLowerCase()) {
+                alert('Congratulations! Your guess is correct!');
+            } else {
+                alert('Oops! Your guess is incorrect. Please try again.');
+            }
+        }
+
+        window.onload = setLogo;
+    </script>
+</body>
+</html>
